@@ -7,9 +7,12 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body class="bg-dark">
+<body style="background-color:cornflowerblue">
+    <nav class="navbar navbar-light bg-light" style="background-color:cornflowerblue">
+        <span class="navbar-brand mb-0 h1">Fit Your Immune - Consultas en línea</span>
+    </nav>
     <div class="container">
-        <h1 class="text-center text-white p-4">Envío de mensajes por Whatsapp</h1>
+        <h1 class="text-center text-white p-4">Envía tu consulta por Whatsapp</h1>
 
         <form id="myform" class="col-md-8 m-auto">
             <div class="form-group">
@@ -17,7 +20,7 @@
 
                 <input
                     type="text"
-                    placeholder="Ingresa el número del doctor a consultar"
+                    placeholder="Ingresa el número de tu doctor"
                     class="form-control"
                     name="number"
                 />
@@ -52,11 +55,11 @@
             : element.style.display = 'none';
         }
 
-        // Elementos para los avisos de envío
+        // Status para avisar si se envió o no
         const statusOne = document.getElementById('status-send-1');
         const statusTwo = document.getElementById('status-send-2');
         
-        // Ocultamos ambos por defecto
+        // Ambos están ocultos por por defecto
         showStatus(statusOne, false);
         showStatus(statusTwo, false);
 
@@ -66,7 +69,7 @@
             // Elemento del formulario
             const form = document.getElementById('myform');
 
-            // Obtengo los valores: N° destinatario y Mensaje
+            // Obtengo los valores: telefono del doctor y consulta
             const number = form.querySelector('input[name="number"]').value;
             const message = form.querySelector('textarea[name="message"]').value;
 
@@ -77,7 +80,7 @@
             const options = {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
-                body: data // Insertamos la data que queremos enviar
+                body: data // Lo que queremos enviar
             };
             
             // Hacemos el envío del mensaje a la siguiente ruta
@@ -85,7 +88,7 @@
 
             if(response.status === 200) {
 
-                // Mostramos aviso "Mensaje enviado correctamente"
+                // Aviso "Mensaje enviado correctamente"
                 showStatus(statusOne, true);
 
                 setTimeout(() => {
@@ -96,7 +99,7 @@
                 form.querySelector('textarea[name="message"]').value = '';
             } else {
 
-                // Mostramos aviso "Error al enviar mensaje"
+                // Aviso "Error al enviar mensaje"
                 showStatus(statusTwo, true);
 
                 setTimeout(() => {
