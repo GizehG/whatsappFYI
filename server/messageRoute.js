@@ -4,7 +4,7 @@ const sendMessage = require('./message');
 router.post(
     '/send',
     [],
-    sendMessage
+    sendMessage 
 );
 
 
